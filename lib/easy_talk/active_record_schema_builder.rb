@@ -131,8 +131,9 @@ module EasyTalk
 
       # Add precision/scale for numeric columns
       if column.type == :decimal && column.precision
-        constraints[:precision] = column.precision
-        constraints[:scale] = column.scale if column.scale
+        constraints[:minimum] = -10**column.precision
+        constraints[:maximum] = 10**column.precision
+        constraints[:multiple_of] = 1.0 / (10**(column.scale || 0))
       end
 
       # Add default value if present and not a proc
