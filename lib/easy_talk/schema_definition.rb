@@ -45,7 +45,7 @@ module EasyTalk
         raise ArgumentError, 'Block-style sub-schemas are no longer supported. Use class references as types instead.'
       end
 
-      @schema[:properties][name] = { type:, constraints: }
+      @schema[:properties][name] = { type: type, constraints: constraints }
     end
 
     def validate_property_name(name)
